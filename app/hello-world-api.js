@@ -1,44 +1,16 @@
 /*
- *   Primary file for the API
+ *   Primary file for the Hello World API
  *
  */
 
 // Dependencies
-
 const http = require("http");
-const https = require("https");
 const url = require("url");
 const StringDecoder = require("string_decoder").StringDecoder;
-const config = require('./config');
-const fs = require('fs');
 
-// Instantiate the HTTP server
+// All the server logic for the http server
 const httpServer = http.createServer(function (req, res) {
-  unifiedServer(req, res)
-});
 
-// Start the HTTP server
-httpServer.listen(config.httpPort, function () {
-  console.log(`The server is listening on port ${config.httpPort} in ${config.envName} mode`);
-});
-
-// Instantiate the HTTPS server
-const httpsServerOptions = {
-  'key': fs.readFileSync('./https/key.pem'),
-  'cert': fs.readFileSync('./https/cert.pem'),
-}
-
-const httpsServer = https.createServer(httpsServerOptions, function (req, res) {
-  unifiedServer(req, res)
-});
-
-// Start the HTTPS server
-httpsServer.listen(config.httpsPort, function () {
-  console.log(`The server is listening on port ${config.httpsPort} in ${config.envName} mode`);
-});
-
-// All the server logic for both the http and https server
-const unifiedServer = function(req, res) {
   // Get the url and parse it
   const parsedUrl = url.parse(req.url, true);
   // Get the path
@@ -99,19 +71,22 @@ const unifiedServer = function(req, res) {
       console.log("Returning this response:", statusCode, payloadString);
     });
   });
-}
+});
+
+httpServer.listen(9000, function() {
+  console.log("The server is listening on port 9000.");
+});
 
 // Define the handlers
 var handlers = {};
 
 // Ping handler
 handlers.ping = function(data, callback) {
-  callback(200);
+  callback(200, {'ping': 'server is alive'});
 }
 
-// Sample handler
-handlers.sample = function(data, callback) {
-  callback(200, {'sample': 'sample handler'});
+handlers.hello = function(data, callback) {
+  callback(200, {'hello': 'hello world!'});
 }
 
 // Not found handler
@@ -122,5 +97,5 @@ handlers.notFound = function (data, callback) {
 // Define a request router
 var router = {
   ping: handlers.ping,
-  sample: handlers.sample,
+  hello: handlers.hello,
 };
