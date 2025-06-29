@@ -27,6 +27,7 @@ lib.create = function (dir, file, data, callback) {
           if (!err) {
             fs.close(fileDescriptor, function (err) {
               if (!err) {
+                console.log("fd:", fileDescriptor)
                 callback(false);
               } else {
                 callback('Error closing new file');
@@ -54,6 +55,7 @@ lib.read = function (dir, file, callback) {
   );
 };
 
+// Update data inside the file
 lib.update = function (dir, file, data, callback) {
   // open the file for writing
   fs.open(
@@ -70,13 +72,19 @@ lib.update = function (dir, file, data, callback) {
             // Write to the file and close it
             fs.writeFile(fileDescriptor, stringData, function (err) {
               if (!err) {
-                callback(false);
+                fs.close(fileDescriptor, function() {
+                  if(!err) {
+                    callback(false);
+                  } else {
+                    callback('Error closing existing file');
+                  }
+                })
               } else {
-                callback('Error closing the file');
+                callback('Error writing to existing file');
               }
-            });
+            })
           } else {
-            callback('error truncating file');
+            callback('Error truncating file');
           }
         });
       } else {
