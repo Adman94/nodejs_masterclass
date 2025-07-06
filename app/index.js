@@ -9,9 +9,11 @@ const http = require("http");
 const https = require("https");
 const url = require("url");
 const StringDecoder = require("string_decoder").StringDecoder;
-const config = require('./config');
+const config = require('./lib/config');
 const fs = require('fs');
-// const _data = require('./lib/data')
+const handlers = require('./lib/handlers');
+const helpers = require('./lib/helpers')
+// const _data = require('./lib/data');
 
 // TESTING
 // @TODO delete this
@@ -32,9 +34,9 @@ const fs = require('fs');
 // })
 
 // delete
-_data.delete('test', 'newFile1', function(err) {
-  console.log('error deleting:', err)
-})
+// _data.delete('test', 'newFile1', function(err) {
+//   console.log('error deleting:', err)
+// })
 
 // Instantiate the HTTP server
 const httpServer = http.createServer(function (req, res) {
@@ -100,7 +102,7 @@ const unifiedServer = function(req, res) {
       queryStringObject: queryStringObject,
       method: method,
       headers: headers,
-      payload: buffer,
+      payload: helpers.parseJsonToObject(buffer),
     };
 
     //  Route the request to the handler specified in the router
@@ -125,26 +127,9 @@ const unifiedServer = function(req, res) {
   });
 }
 
-// Define the handlers
-var handlers = {};
-
-// Ping handler
-handlers.ping = function(data, callback) {
-  callback(200);
-}
-
-// Sample handler
-handlers.sample = function(data, callback) {
-  callback(200, {'sample': 'sample handler'});
-}
-
-// Not found handler
-handlers.notFound = function (data, callback) {
-  callback(404);
-};
-
 // Define a request router
 var router = {
   ping: handlers.ping,
   sample: handlers.sample,
+  'users': handlers.users
 };
