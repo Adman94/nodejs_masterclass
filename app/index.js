@@ -15,6 +15,11 @@ const handlers = require('./lib/handlers');
 const helpers = require('./lib/helpers')
 // const _data = require('./lib/data');
 
+// test twilio SMS (use your own Twilio credentials)
+helpers.sendTwilioSms('5005550006', 'This is a Node.js Twilio test message!', function(err) {
+  console.log('This was the error:', err);
+});
+
 // TESTING
 // @TODO delete this
 

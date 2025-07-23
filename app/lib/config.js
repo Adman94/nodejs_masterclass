@@ -1,34 +1,44 @@
 /*
- *  Create and export configuration variables
+ * Create and export configuration variables
  *
  */
 
-//  Container for all the environments
+// Container for all environments
 var environments = {};
 
 // Staging (default) environment
 environments.staging = {
-    'httpPort': 3000,
-    'httpsPort': 3001,
-    'envName': 'staging',
-    'hashingSecret': 'thisIsASecret',
-    'maxChecks': 5 // Maximum number of checks per user
+  'httpPort' : 3000,
+  'httpsPort' : 3001,
+  'envName' : 'staging',
+  'hashingSecret' : 'thisIsASecret',
+  'maxChecks' : 5,
+  'twilio' : {
+    'accountSid' : 'PLACEHOLDER_ACCOUNT_SID',
+    'authToken' : 'PLACEHOLDER_AUTH_TOKEN',
+    'fromPhone' : '+15005550006'
+  }
 };
 
 // Production environment
 environments.production = {
-    'httpPort': 9000,
-    'httpsPort': 9001,
-    'envName': 'production',
-    'hashingSecret': 'thisIsAlsoASecret',
-    'maxChecks': 5 // Maximum number of checks per user
+  'httpPort' : 5000,
+  'httpsPort' : 5001,
+  'envName' : 'production',
+  'hashingSecret' : 'thisIsAlsoASecret',
+  'maxChecks' : 10,
+  'twilio' : {
+    'accountSid' : 'PLACEHOLDER_ACCOUNT_SID',
+    'authToken' : 'PLACEHOLDER_AUTH_TOKEN',
+    'fromPhone' : '+15005550006'
+  }
 };
 
 // Determine which environment was passed as a command-line argument
-var currentEnv = typeof(process.env.NODE_ENV) == 'string' ? process.env.NODE_ENV.toLowerCase() : '';
+var currentEnvironment = typeof(process.env.NODE_ENV) == 'string' ? process.env.NODE_ENV.toLowerCase() : '';
 
-//  Check that the current environment is one of the environments above, if not, default to staging
-var environmentToExport = typeof(environments[currentEnv]) == 'object' ? environments[currentEnv] : environments.staging;
+// Check that the current environment is one of the environments above, if not default to staging
+var environmentToExport = typeof(environments[currentEnvironment]) == 'object' ? environments[currentEnvironment] : environments.staging;
 
-//  Export the module
+// Export the module
 module.exports = environmentToExport;
