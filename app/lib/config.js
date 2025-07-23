@@ -16,7 +16,7 @@ environments.staging = {
   'twilio' : {
     'accountSid' : 'ACXXXXXXXXXXXXXXXX',
     'authToken' : 'XXXXXXXXXXXXXXXXXXXXXXXXXXXX',
-    'fromPhone' : '+15001234567' // Replace with your Twilio phone number
+    'fromPhone' : '+XXXXXXXXXX' // Replace with your Twilio phone number
   }
 };
 
@@ -30,7 +30,7 @@ environments.production = {
   'twilio' : {
     'accountSid' : 'ACXXXXXXXXXXXXXXXX',
     'authToken' : 'XXXXXXXXXXXXXXXXXXXXXXXXXXXX',
-    'fromPhone' : '+15001234567' // Replace with your Twilio phone number
+    'fromPhone' : '+XXXXXXXXXX' // Replace with your Twilio phone number
   }
 };
 
