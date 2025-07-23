@@ -14,9 +14,9 @@ environments.staging = {
   'hashingSecret' : 'thisIsASecret',
   'maxChecks' : 5,
   'twilio' : {
-    'accountSid' : 'PLACEHOLDER_ACCOUNT_SID',
-    'authToken' : 'PLACEHOLDER_AUTH_TOKEN',
-    'fromPhone' : '+15005550006'
+    'accountSid' : 'ACXXXXXXXXXXXXXXXX',
+    'authToken' : 'XXXXXXXXXXXXXXXXXXXXXXXXXXXX',
+    'fromPhone' : '+15001234567' // Replace with your Twilio phone number
   }
 };
 
@@ -28,9 +28,9 @@ environments.production = {
   'hashingSecret' : 'thisIsAlsoASecret',
   'maxChecks' : 10,
   'twilio' : {
-    'accountSid' : 'PLACEHOLDER_ACCOUNT_SID',
-    'authToken' : 'PLACEHOLDER_AUTH_TOKEN',
-    'fromPhone' : '+15005550006'
+    'accountSid' : 'ACXXXXXXXXXXXXXXXX',
+    'authToken' : 'XXXXXXXXXXXXXXXXXXXXXXXXXXXX',
+    'fromPhone' : '+15001234567' // Replace with your Twilio phone number
   }
 };
 
