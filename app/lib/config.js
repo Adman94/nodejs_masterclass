@@ -14,9 +14,9 @@ environments.staging = {
   'hashingSecret' : 'thisIsASecret',
   'maxChecks' : 5,
   'twilio' : {
-    'accountSid' : 'ACXXXXXXXXXXXXXXXX',
-    'authToken' : 'XXXXXXXXXXXXXXXXXXXXXXXXXXXX',
-    'fromPhone' : '+XXXXXXXXXX' // Replace with your Twilio phone number
+    'accountSid' : '',
+    'authToken' : '',
+    'fromPhone' : '' // Replace with your Twilio phone number
   }
 };
 
@@ -28,9 +28,9 @@ environments.production = {
   'hashingSecret' : 'thisIsAlsoASecret',
   'maxChecks' : 10,
   'twilio' : {
-    'accountSid' : 'ACXXXXXXXXXXXXXXXX',
-    'authToken' : 'XXXXXXXXXXXXXXXXXXXXXXXXXXXX',
-    'fromPhone' : '+XXXXXXXXXX' // Replace with your Twilio phone number
+    'accountSid' : '',
+    'authToken' : '',
+    'fromPhone' : '' // Replace with your Twilio phone number
   }
 };
 
